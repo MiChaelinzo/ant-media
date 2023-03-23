@@ -1,0 +1,49 @@
+import io.antmedia.websocket.WebSocketCommunityHandler;
+import io.antmedia.websocket.WebSocketConstants;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+public class PlayerCommunicationPlugin extends WebSocketCommunityHandler {
+    
+    // Set to store all active sessions
+    private Set<String> sessions = Collections.synchronizedSet(new HashSet<>());
+    
+    @Override
+    public void onConnect(String sessionId, String protocol, String path, String remoteAddress) {
+        // Add the session to the set of active sessions
+        sessions.add(sessionId);
+    }
+    
+    @Override
+    public void onDisconnect(String sessionId, String protocol, String path, String remoteAddress) {
+        // Remove the session from the set of active sessions
+        sessions.remove(sessionId);
+    }
+    
+    @Override
+    public void onMessage(String sessionId, String protocol, String path, String remoteAddress, String message) {
+        // Broadcast the message to all other sessions
+        for (String session : sessions) {
+            if (!session.equals(sessionId)) {
+                send(session, WebSocketConstants.MESSAGE, message);
+            }
+        }
+    }
+    
+        // Handle audio messages
+        if (message.startsWith("AUDIO:")) {
+            // Get the audio data from the message
+            String audioData = message.substring(6);
+            
+            // Broadcast the audio data to all other sessions
+            for (String session : sessions) {
+                if (!session.equals(sessionId)) {
+                    send(session, WebSocketConstants.MESSAGE, "AUDIO:" + audioData);
+                }
+            }
+        }
+    }
+
+
