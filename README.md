@@ -9,7 +9,7 @@ For audio sharing, you will need to implement additional functionality in the on
 
  - screensharing.java
   
-  ####Description
+  #### Description
 The start method sets up the JavaFX application by creating an ImageView object to display the captured screen image. It also initializes the Ant Media Server WebRTC adaptor object with the server address, application name, and stream name.
 
 The screenCaptureThread is a separate thread that uses the Robot class to capture the screen at regular intervals and convert the captured image to a JavaFX image. The webRTCMediaStream object is then used to add the video track to the WebRTC stream for broadcasting to viewers.
@@ -18,7 +18,7 @@ The setOnCloseRequest method is used to stop the screen capture thread and unreg
 
 To use this code with Ant Media Server, you can create a new plugin by implementing the IAntMediaPlugin interface and adding the necessary dependencies in your pom.xml file. Then you can use the WebRTCAdaptor object to establish a connection to your Ant Media Server instance and stream the captured screen to viewers.
 
-####Here are the step-by-step instructions to use the code above:
+#### Here are the step-by-step instructions to use the code above:
 
 Install Ant Media Server (AMS) on your server or local machine.
 
