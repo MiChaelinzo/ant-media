@@ -7,6 +7,12 @@ Once the plugin is enabled, you can use a WebSocket client to connect to the Ant
 
 For audio sharing, you will need to implement additional functionality in the onMessage method to handle audio streams. You can use a third-party library such as WebRTC to handle real-time audio streaming.
 
+ This code is an implementation of a WebSocket handler for the Ant Media Server. Specifically, it is a plugin that handles player communication. When a player connects to the Ant Media Server, this plugin adds the player's session to a set of active sessions. When a player disconnects, this plugin removes the player's session from the set of active sessions. When a player sends a message, this plugin broadcasts the message to all other active sessions.
+
+To use this code, you need to add it as a plugin to your Ant Media Server configuration. You can do this by placing the compiled plugin JAR file in the plugins directory of your Ant Media Server installation. You also need to modify the server.xml configuration file to include the plugin configuration. You can refer to the Ant Media Server documentation for more details on how to configure plugins.
+
+Once the plugin is configured and running, it will handle player communication for your Ant Media Server. Players will be able to send messages to each other using WebSocket connections. Additionally, if a player sends a message starting with "AUDIO:", this plugin will broadcast the audio data to all other active sessions.
+ 
  #### screensharing.java
   
   #### Description
