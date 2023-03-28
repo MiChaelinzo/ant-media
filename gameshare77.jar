@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+AntMediaApplicationAdapter app = new AntMediaApplicationAdapter();
+PlayerCommunicationPlugin plugin = new PlayerCommunicationPlugin();
+app.registerWebSocketHandler(plugin);
+
 public class PlayerCommunicationPlugin extends WebSocketCommunityHandler {
     
     // Set to store all active sessions
